@@ -4,6 +4,8 @@ const koaBody = require('koa-body');
 const cors = require('@koa/cors');
 const Router = require('@koa/router');
 const router = new Router();
+const { v4: uuidv4 } = require('uuid');
+const { faker } = require('@faker-js/faker');
 
 const app = new Koa();
 
@@ -18,19 +20,23 @@ app.use(koaBody({
   json: true
 }));
 
-// router.get('/messages/unread', async ctx => {
-//   const index = users.findIndex(({ name }) => name === ctx.params.name);
-//   if (index === -1) {
-//     const { v4: uuidv4 } = require('uuid');
-//     const newId = uuidv4();
-//     users.push({ id: newId, name: ctx.params.name });
-//     ctx.response.status = 200;
-//     ctx.response.body = users;
-//     return;
-//   }
-//   ctx.response.status = 400;
-//   ctx.response.body = `Имя пользователя "${ctx.params.name}" уже занято!`;
-// });
+router.get('/messages/unread', async ctx => {
+  const response = {
+    status: 'ok',
+    timestamp: Date.now(),
+    messages: [
+      {
+        id: uuidv4(),
+        from: faker.internet.email(),
+        subject: faker.internet.words(),
+        body: faker.internet.text(),
+        received: faker.date.past().getTime()
+      }
+    ]
+  };
+  ctx.response.status = 400;
+  ctx.response.body = response;
+});
 
 app.use(router.routes()).use(router.allowedMethods());
 const port = process.env.PORT || 7000;

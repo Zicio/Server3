@@ -21,21 +21,22 @@ app.use(koaBody({
 }));
 
 router.get('/messages/unread', async ctx => {
-  const response = {
+  const data = {
     status: 'ok',
     timestamp: Date.now(),
     messages: [
       {
         id: uuidv4(),
         from: faker.internet.email(),
-        subject: faker.internet.words(),
-        body: faker.internet.text(),
+        subject: faker.lorem.words(),
+        body: faker.lorem.text(),
         received: faker.date.past().getTime()
       }
     ]
   };
-  ctx.response.status = 400;
-  ctx.response.body = response;
+  ctx.response.status = 200;
+  ctx.response.body = data;
+  console.log(ctx.response.body);
 });
 
 app.use(router.routes()).use(router.allowedMethods());

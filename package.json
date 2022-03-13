@@ -2,10 +2,10 @@
   "name": "server3",
   "version": "1.0.0",
   "description": "server",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "forever index.js",
-    "watch": "forever -w index.js",
+    "start": "forever server.js",
+    "watch": "forever -w server.js",
     "lint": "eslint ."
   },
   "engines": {

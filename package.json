@@ -27,10 +27,10 @@
     "forever": "^4.0.3",
     "koa": "^2.13.4",
     "koa-body": "^4.2.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "@faker-js/faker": "^6.0.0-beta.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^6.0.0-beta.0",
     "eslint": "^7.32.0",
     "eslint-config-koa": "^2.0.2",
     "eslint-plugin-import": "^2.25.4",
